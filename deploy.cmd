@@ -110,6 +110,12 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
+:: 5. Initialize MySQL database
+pushd "%DEPLOYMENT_TARGET%"
+call :ExecuteCmd bash initialize.sh
+IF !ERRORLEVEL! NEQ 0 goto error
+popd
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
