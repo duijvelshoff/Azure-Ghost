@@ -29,6 +29,12 @@
     },
     "LetsEncryptEMail": {
       "type": "string"
+    },
+    "MailgunUsername": {
+      "type": "string"
+    },
+    "MailgunPassword": {
+      "type": "string"
     }
   },
   "variables": {
@@ -98,7 +104,9 @@
             "letsencrypt:Email": "[variables('letsencrypt-email')]",      
             "letsencrypt:Hostnames": "[variables('letsencrypt-hostname')]",
             "letsencrypt:DisableWebConfigUpdate": "false",            
-            "letsencrypt:UseIPBasedSSL": "false"
+            "letsencrypt:UseIPBasedSSL": "false",
+            "mailgun:username":"[parameters('MailgunUsername')]",
+            "mailgun:password":"[parameters('MailgunPassword')]"
           }
         },
         {

@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 ######################################
-### version:       1.0             ###
-### date modified: 12 NOV 2017     ###
+### version:       1.1             ###
+### date modified: 13 NOV 2017     ###
 ### authors:       N. Duijvelshoff ###
 ######################################
 #
@@ -11,6 +11,8 @@
 # Setting Needed Variables
 azureconnstr="../../data/mysql/MYSQLCONNSTR_localdb.txt"
 azurehosturl="http://"$(env | grep WEBSITE_HOSTNAME | sed -e "s/.*=\(.*\)/\1/")"/"
+mail_user=$(env | grep APPSETTING_mailgun:username | sed -e "s/.*=\(.*\)/\1/")
+mail_pass=$(env | grep APPSETTING_mailgun:password | sed -e "s/.*=\(.*\)/\1/")
 
 #
 # Additional variables
@@ -48,7 +50,7 @@ fi
 #
 # Replace Strings
 log "Replacing strings in config file."
-exec=$(sed -e "s/replace-password/"$database_pass"/g" -e "s/replace-port/"$database_port"/g" init/config.production.json > config.production.json)
+exec=$(sed -e "s/db-password/"$database_pass"/g" -e "s/db-port/"$database_port"/g" -e "s/mx-username/"$mail_user"/g" -e "s/mx-password/"$mail_pass"/g" init/config.production.json > config.production.json)
 
 #
 # Let Node.js help us with this... :D

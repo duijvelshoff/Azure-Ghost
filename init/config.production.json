@@ -4,10 +4,20 @@
 		"connection": {
 			"host": "127.0.0.1",
 			"user": "azure",
-			"password": "replace-password",
+			"password": "db-password",
 			"database": "ghost",
 			"charset": "utf8",
-			"port": "replace-port"
+			"port": "db-port"
+		}
+	},
+	"mail": {
+    	"transport": "smtp",
+    	"options": {
+        	"service": "Mailgun",
+        	"auth": {
+            	"user": "mx-username",
+            	"pass": "mx-password"
+        	}
 		}
 	}
 }
